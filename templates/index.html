@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boston Housing Form</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #c6ffdd, #fbd786, #f7797d);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+                margin: 0;
+                padding: 40px;
+                display: flex;
+                justify-content: center;
+            }
+
+            @keyframes gradientBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .form-container {
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 30px 40px;
+                border-radius: 12px;
+                max-width: 900px;
+                width: 100%;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(8px);
+            }
+
+            h2 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+            }
+
+            .form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px 30px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+                background-color: rgba(255, 255, 255, 0.6);
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+            input[type="text"]:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+                outline: none;
+                background-color: rgba(255, 255, 255, 0.85);
+            }
+
+            .submit-button {
+                grid-column: span 2;
+                margin-top: 30px;
+            }
+
+            .submit-button input[type="submit"] {
+                width: 100%;
+                background-color: #007bff;
+                color: white;
+                padding: 14px 30px;
+                font-size: 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .submit-button input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            .prediction {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 18px;
+                color: green;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="form-container">
+            <h2>Boston Housing Price Prediction</h2>
+            <form action="/predict" method="post">
+                <div class="form-grid">
+                    <div>
+                        <label for="CRIM">CRIM</label>
+                        <input type="text" name="CRIM" required>
+                    </div>
+                    <div>
+                        <label for="ZN">ZN</label>
+                        <input type="text" name="ZN" required>
+                    </div>
+
+                    <div>
+                        <label for="INDUS">INDUS</label>
+                        <input type="text" name="INDUS" required>
+                    </div>
+                    <div>
+                        <label for="CHAS">CHAS</label>
+                        <input type="text" name="CHAS" required>
+                    </div>
+
+                    <div>
+                        <label for="NOX">NOX</label>
+                        <input type="text" name="NOX" required>
+                    </div>
+                    <div>
+                        <label for="RM">RM</label>
+                        <input type="text" name="RM" required>
+                    </div>
+
+                    <div>
+                        <label for="AGE">AGE</label>
+                        <input type="text" name="AGE" required>
+                    </div>
+                    <div>
+                        <label for="DIS">DIS</label>
+                        <input type="text" name="DIS" required>
+                    </div>
+
+                    <div>
+                        <label for="RAD">RAD</label>
+                        <input type="text" name="RAD" required>
+                    </div>
+                    <div>
+                        <label for="TAX">TAX</label>
+                        <input type="text" name="TAX" required>
+                    </div>
+
+                    <div>
+                        <label for="PTRATION">PTRATION</label>
+                        <input type="text" name="PTRATION" required>
+                    </div>
+                    <div>
+                        <label for="BLACK">BLACK</label>
+                        <input type="text" name="BLACK" required>
+                    </div>
+                    <div>
+                        <label for="LSTAT">LSTAT</label>
+                        <input type="text" name="LSTAT" required>
+                    </div>
+                    <div>
+                        <label for="MEDV">MEDV</label>
+                        <input type="text" name="MEDV" required>
+                    </div>
+
+                    <div class="submit-button">
+                        <input type="submit" value="Predict">
+                    </div>
+                </div>
+            </form>
+
+            {% if prediction_text %}
+            <div class="prediction">{{ prediction_text }}</div>
+            {% endif %}
+        </div>
+
+    </body>
+
+</html>
